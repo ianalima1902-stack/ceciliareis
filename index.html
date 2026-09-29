@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#071d3d">
+  <title>Nicolle | XV anos</title>
+  <style>
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;
+      min-height:100%;
+      background:#07162f;
+      font-family:Arial,sans-serif;
+    }
+    body{
+      display:grid;
+      place-items:center;
+      overflow-x:hidden;
+    }
+    .app{
+      position:relative;
+      width:min(100vw,calc(100vh * 0.546875));
+      aspect-ratio:1120/2048;
+      background:#071d3d;
+      overflow:hidden;
+    }
+    .page{
+      position:absolute;
+      inset:0;
+      display:none;
+    }
+    .page.active{display:block}
+    .art{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+      user-select:none;
+      -webkit-user-drag:none;
+    }
+    .hotspot{
+      position:absolute;
+      z-index:10;
+      display:block;
+      border:0;
+      padding:0;
+      background:transparent;
+      cursor:pointer;
+      -webkit-tap-highlight-color:transparent;
+    }
+    .hotspot:focus-visible{
+      outline:2px solid rgba(214,145,64,.95);
+      outline-offset:2px;
+      border-radius:12px;
+    }
+
+    /* CAPA */
+    #openInvite{
+      left:6%;
+      top:37%;
+      width:88%;
+      height:40%;
+    }
+
+    /* CONVITE PRINCIPAL */
+    #musicBtn{
+      left:7.0%;
+      top:11.0%;
+      width:17%;
+      height:10%;
+      border-radius:50%;
+    }
+    #giftBtn{
+      left:15%;
+      top:71.0%;
+      width:39%;
+      height:3.4%;
+    }
+    #rsvpBtn{
+      left:15%;
+      top:74.6%;
+      width:39%;
+      height:3.4%;
+    }
+    #locationBtn{
+      left:15%;
+      top:78.2%;
+      width:39%;
+      height:3.4%;
+    }
+    #manualBtn{
+      left:15%;
+      top:81.8%;
+      width:39%;
+      height:3.4%;
+    }
+
+    /* VOLTAR */
+    .backBtn{
+      left:30%;
+      bottom:1.25%;
+      width:40%;
+      height:3.2%;
+      border-radius:999px;
+    }
+
+    .music-state{
+      position:absolute;
+      z-index:15;
+      left:7.1%;
+      top:11.0%;
+      width:17%;
+      height:10%;
+      border-radius:50%;
+      pointer-events:none;
+      opacity:0;
+      box-shadow:0 0 0 2px rgba(255,255,255,.7),0 0 24px rgba(214,145,64,.65);
+      transition:opacity .2s;
+    }
+    .music-state.on{opacity:1}
+
+    @media (min-aspect-ratio:1120/2048){
+      body{padding:0}
+    }
+  </style>
+</head>
+<body>
+<main class="app" aria-label="Convite de XV anos de Nicolle">
+
+  <section class="page active" id="coverPage">
+    <img class="art" src="capa.png" alt="Capa do convite de Nicolle">
+    <button class="hotspot" id="openInvite" aria-label="Abrir convite"></button>
+  </section>
+
+  <section class="page" id="invitePage">
+    <img class="art" src="convite.png" alt="Convite de XV anos de Nicolle">
+
+    <button class="hotspot" id="musicBtn" aria-label="Tocar ou pausar música"></button>
+    <div class="music-state" id="musicState" aria-hidden="true"></div>
+
+    <button class="hotspot" id="giftBtn" aria-label="Abrir sugestões de presente"></button>
+
+    <a class="hotspot" id="rsvpBtn"
+       href="https://wa.me/5585992875129"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Confirmar presença pelo WhatsApp"></a>
+
+    <a class="hotspot" id="locationBtn"
+       href="https://maps.app.goo.gl/XZ9hBLYaFbDowBkB9"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="Abrir localização no mapa"></a>
+
+    <button class="hotspot" id="manualBtn" aria-label="Abrir manual do convidado"></button>
+  </section>
+
+  <section class="page" id="giftPage">
+    <img class="art" src="presentes.png" alt="Sugestões de presente">
+    <button class="hotspot backBtn" data-back aria-label="Voltar para o convite"></button>
+  </section>
+
+  <section class="page" id="manualPage">
+    <img class="art" src="manual.png" alt="Manual do convidado">
+    <button class="hotspot backBtn" data-back aria-label="Voltar para o convite"></button>
+  </section>
+
+  <audio id="music" preload="auto" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+  </audio>
+
+</main>
+
+<script>
+  const coverPage = document.getElementById('coverPage');
+  const invitePage = document.getElementById('invitePage');
+  const giftPage = document.getElementById('giftPage');
+  const manualPage = document.getElementById('manualPage');
+
+  const music = document.getElementById('music');
+  const musicBtn = document.getElementById('musicBtn');
+  const musicState = document.getElementById('musicState');
+
+  function showPage(page){
+    [coverPage, invitePage, giftPage, manualPage].forEach(p => p.classList.remove('active'));
+    page.classList.add('active');
+  }
+
+  document.getElementById('openInvite').addEventListener('click', () => {
+    showPage(invitePage);
+  });
+
+  document.getElementById('giftBtn').addEventListener('click', () => {
+    showPage(giftPage);
+  });
+
+  document.getElementById('manualBtn').addEventListener('click', () => {
+    showPage(manualPage);
+  });
+
+  document.querySelectorAll('[data-back]').forEach(btn => {
+    btn.addEventListener('click', () => showPage(invitePage));
+  });
+
+  musicBtn.addEventListener('click', async () => {
+    if(music.paused){
+      try{
+        await music.play();
+        musicState.classList.add('on');
+      }catch(e){}
+    }else{
+      music.pause();
+      musicState.classList.remove('on');
+    }
+  });
+
+  music.addEventListener('play', () => musicState.classList.add('on'));
+  music.addEventListener('pause', () => musicState.classList.remove('on'));
+</script>
+</body>
+</html>

@@ -4,10 +4,31 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#004aad">
+
+  <meta name="description" content="Você é nosso convidado especial!">
+
+  <!-- Prévia de compartilhamento -->
+  <meta property="og:title" content="Cecilia Reis | 15 anos">
+  <meta property="og:description" content="Você é nosso convidado especial!">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://convitececiliareis.umconviteso.com.br/">
+
+  <meta property="og:image" content="https://convitececiliareis.umconviteso.com.br/preview.jpg">
+  <meta property="og:image:secure_url" content="https://convitececiliareis.umconviteso.com.br/preview.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:alt" content="Convite especial de Cecilia Reis - 15 anos">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cecilia Reis | 15 anos">
+  <meta name="twitter:description" content="Você é nosso convidado especial!">
+  <meta name="twitter:image" content="https://convitececiliareis.umconviteso.com.br/preview.jpg">
+
   <title>Cecilia Reis | 15 anos</title>
 
   <style>
-    *{box-sizing:border-box}
+    *{
+      box-sizing:border-box;
+    }
 
     html,body{
       margin:0;
@@ -63,6 +84,16 @@
       background:transparent;
       cursor:pointer;
       -webkit-tap-highlight-color:transparent;
+      outline:none !important;
+      box-shadow:none !important;
+    }
+
+    .hotspot:focus,
+    .hotspot:active,
+    .hotspot:focus-visible,
+    .linkspot:focus,
+    .linkspot:active,
+    .linkspot:focus-visible{
       outline:none !important;
       box-shadow:none !important;
     }
@@ -140,7 +171,7 @@
       outline:none;
     }
 
-    /* Copiar Pix */
+    /* Botão copiar Pix */
     #copyPixBtn{
       position:absolute;
       z-index:30;
@@ -175,57 +206,132 @@
       white-space:nowrap;
     }
 
-    .toast.show{opacity:1}
+    .toast.show{
+      opacity:1;
+    }
   </style>
 </head>
 
 <body>
+
 <main class="app" aria-label="Convite de 15 anos de Cecilia Reis">
 
+  <!-- CAPA -->
   <section class="page active" id="coverPage">
-    <img class="art" src="capa.png" alt="Capa do convite de Cecilia Reis">
-    <button class="hotspot" id="openInvite" aria-label="Abrir convite"></button>
+
+    <img
+      class="art"
+      src="capa.png"
+      alt="Capa do convite de Cecilia Reis">
+
+    <button
+      class="hotspot"
+      id="openInvite"
+      aria-label="Abrir convite">
+    </button>
+
   </section>
 
+  <!-- CONVITE PRINCIPAL -->
   <section class="page" id="invitePage">
-    <img class="art" src="convite.png" alt="Convite principal de Cecilia Reis">
 
-    <button class="hotspot" id="musicBtn" aria-label="Tocar ou pausar música"></button>
-    <button class="hotspot" id="manualBtn" aria-label="Abrir manual do convidado"></button>
-    <button class="hotspot" id="giftBtn" aria-label="Abrir sugestões de presente"></button>
+    <img
+      class="art"
+      src="convite.png"
+      alt="Convite principal de Cecilia Reis">
 
-    <a class="linkspot" id="rsvpBtn"
-       href="https://wa.link/x4yta1"
-       target="_blank"
-       rel="noopener noreferrer"
-       aria-label="Confirmar presença pelo WhatsApp"></a>
+    <button
+      class="hotspot"
+      id="musicBtn"
+      aria-label="Tocar ou pausar música">
+    </button>
 
-    <a class="linkspot" id="locationBtn"
-       href="https://maps.app.goo.gl/i255TKXXphpAvPEo7"
-       target="_blank"
-       rel="noopener noreferrer"
-       aria-label="Ver localização"></a>
+    <button
+      class="hotspot"
+      id="manualBtn"
+      aria-label="Abrir manual do convidado">
+    </button>
+
+    <button
+      class="hotspot"
+      id="giftBtn"
+      aria-label="Abrir sugestões de presente">
+    </button>
+
+    <a
+      class="linkspot"
+      id="rsvpBtn"
+      href="https://wa.link/x4yta1"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Confirmar presença pelo WhatsApp">
+    </a>
+
+    <a
+      class="linkspot"
+      id="locationBtn"
+      href="https://maps.app.goo.gl/i255TKXXphpAvPEo7"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Ver localização">
+    </a>
+
   </section>
 
+  <!-- SUGESTÕES DE PRESENTE -->
   <section class="page" id="giftPage">
-    <img class="art" src="presentes.png" alt="Sugestões de presente">
-    <button id="copyPixBtn" aria-label="Copiar chave Pix">Copiar chave Pix</button>
-    <button class="closePage" data-back aria-label="Voltar ao convite">×</button>
+
+    <img
+      class="art"
+      src="presentes.png"
+      alt="Sugestões de presente">
+
+    <button
+      id="copyPixBtn"
+      aria-label="Copiar chave Pix">
+      Copiar chave Pix
+    </button>
+
+    <button
+      class="closePage"
+      data-back
+      aria-label="Voltar ao convite">
+      ×
+    </button>
+
   </section>
 
+  <!-- MANUAL / COMUNICADO -->
   <section class="page" id="manualPage">
-    <img class="art" src="manual.png" alt="Comunicado importante">
-    <button class="closePage" data-back aria-label="Voltar ao convite">×</button>
+
+    <img
+      class="art"
+      src="manual.png"
+      alt="Comunicado importante">
+
+    <button
+      class="closePage"
+      data-back
+      aria-label="Voltar ao convite">
+      ×
+    </button>
+
   </section>
 
+  <!-- ÁUDIO -->
   <audio id="music" preload="auto" loop>
     <source src="musica.mp3" type="audio/mpeg">
   </audio>
 
-  <div class="toast" id="toast">Chave Pix copiada!</div>
+  <!-- AVISO PIX -->
+  <div class="toast" id="toast">
+    Chave Pix copiada!
+  </div>
+
 </main>
 
 <script>
+
   const pages = {
     cover: document.getElementById('coverPage'),
     invite: document.getElementById('invitePage'),
@@ -235,54 +341,108 @@
 
   const music = document.getElementById('music');
   const toast = document.getElementById('toast');
+
   const pixKey = '608.552.578-81';
 
   function showPage(page){
-    Object.values(pages).forEach(p => p.classList.remove('active'));
+    Object.values(pages).forEach(p => {
+      p.classList.remove('active');
+    });
+
     page.classList.add('active');
   }
 
-  document.getElementById('openInvite').addEventListener('click', () => {
-    showPage(pages.invite);
-  });
+  /* ABRIR CONVITE */
+  document
+    .getElementById('openInvite')
+    .addEventListener('click', () => {
+      showPage(pages.invite);
+    });
 
-  document.getElementById('manualBtn').addEventListener('click', () => {
-    showPage(pages.manual);
-  });
+  /* MANUAL */
+  document
+    .getElementById('manualBtn')
+    .addEventListener('click', () => {
+      showPage(pages.manual);
+    });
 
-  document.getElementById('giftBtn').addEventListener('click', () => {
-    showPage(pages.gift);
-  });
+  /* PRESENTES */
+  document
+    .getElementById('giftBtn')
+    .addEventListener('click', () => {
+      showPage(pages.gift);
+    });
 
-  document.querySelectorAll('[data-back]').forEach(btn => {
-    btn.addEventListener('click', () => showPage(pages.invite));
-  });
+  /* VOLTAR AO CONVITE */
+  document
+    .querySelectorAll('[data-back]')
+    .forEach(btn => {
 
-  document.getElementById('musicBtn').addEventListener('click', async () => {
-    if (music.paused){
-      try{ await music.play(); }catch(e){}
-    } else {
-      music.pause();
-    }
-  });
+      btn.addEventListener('click', () => {
+        showPage(pages.invite);
+      });
 
-  document.getElementById('copyPixBtn').addEventListener('click', async () => {
-    try{
-      await navigator.clipboard.writeText(pixKey);
-    }catch(e){
-      const input = document.createElement('input');
-      input.value = pixKey;
-      document.body.appendChild(input);
-      input.select();
-      document.execCommand('copy');
-      input.remove();
-    }
+    });
 
-    toast.textContent = 'Chave Pix copiada!';
-    toast.classList.add('show');
-    clearTimeout(window.toastTimer);
-    window.toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
-  });
+  /* MÚSICA */
+  document
+    .getElementById('musicBtn')
+    .addEventListener('click', async () => {
+
+      if(music.paused){
+
+        try{
+          await music.play();
+        }catch(e){}
+
+      }else{
+
+        music.pause();
+
+      }
+
+    });
+
+  /* COPIAR PIX */
+  document
+    .getElementById('copyPixBtn')
+    .addEventListener('click', async () => {
+
+      try{
+
+        await navigator.clipboard.writeText(pixKey);
+
+      }catch(e){
+
+        const input = document.createElement('input');
+
+        input.value = pixKey;
+
+        document.body.appendChild(input);
+
+        input.select();
+
+        document.execCommand('copy');
+
+        input.remove();
+
+      }
+
+      toast.textContent = 'Chave Pix copiada!';
+
+      toast.classList.add('show');
+
+      clearTimeout(window.toastTimer);
+
+      window.toastTimer = setTimeout(() => {
+
+        toast.classList.remove('show');
+
+      }, 2200);
+
+    });
+
 </script>
+
 </body>
 </html>

@@ -3,34 +3,43 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#071d3d">
-  <title>Nicolle | XV anos</title>
+  <meta name="theme-color" content="#004aad">
+  <title>Cecilia Reis | 15 anos</title>
+
   <style>
     *{box-sizing:border-box}
+
     html,body{
       margin:0;
       min-height:100%;
-      background:#07162f;
-      font-family:Arial,sans-serif;
+      background:#dfe7f1;
+      font-family: Arial, sans-serif;
     }
+
     body{
       display:grid;
       place-items:center;
       overflow-x:hidden;
     }
+
     .app{
       position:relative;
-      width:min(100vw,calc(100vh * 0.546875));
-      aspect-ratio:1120/2048;
-      background:#071d3d;
+      width:min(100vw, calc(100vh * 0.5833));
+      aspect-ratio:9/16;
+      background:#f4f7fb;
       overflow:hidden;
     }
+
     .page{
       position:absolute;
       inset:0;
       display:none;
     }
-    .page.active{display:block}
+
+    .page.active{
+      display:block;
+    }
+
     .art{
       width:100%;
       height:100%;
@@ -38,155 +47,262 @@
       display:block;
       user-select:none;
       -webkit-user-drag:none;
+      pointer-events:none;
     }
-    .hotspot{
+
+    .hotspot,
+    .closeBtn,
+    .copyPixBtn{
       position:absolute;
       z-index:10;
-      display:block;
       border:0;
       padding:0;
+      margin:0;
       background:transparent;
       cursor:pointer;
       -webkit-tap-highlight-color:transparent;
-    }
-    .hotspot:focus-visible{
-      outline:2px solid rgba(214,145,64,.95);
-      outline-offset:2px;
-      border-radius:12px;
+      outline:none !important;
+      box-shadow:none !important;
     }
 
-    /* CAPA */
+    .hotspot:focus,
+    .hotspot:active,
+    .hotspot:focus-visible,
+    .closeBtn:focus,
+    .closeBtn:active,
+    .closeBtn:focus-visible,
+    .copyPixBtn:focus,
+    .copyPixBtn:active,
+    .copyPixBtn:focus-visible{
+      outline:none !important;
+      box-shadow:none !important;
+    }
+
+    /* =========================
+       CAPA
+    ========================= */
     #openInvite{
-      left:6%;
-      top:37%;
-      width:88%;
-      height:40%;
+      left:20%;
+      top:19%;
+      width:60%;
+      height:34%;
     }
 
-    /* CONVITE PRINCIPAL */
+    /* =========================
+       CONVITE PRINCIPAL
+    ========================= */
     #musicBtn{
-      left:7.0%;
-      top:11.0%;
+      left:2.5%;
+      top:2.2%;
       width:17%;
-      height:10%;
+      height:8.5%;
       border-radius:50%;
     }
-    #giftBtn{
-      left:15%;
-      top:71.0%;
-      width:39%;
-      height:3.4%;
-    }
-    #rsvpBtn{
-      left:15%;
-      top:74.6%;
-      width:39%;
-      height:3.4%;
-    }
-    #locationBtn{
-      left:15%;
-      top:78.2%;
-      width:39%;
-      height:3.4%;
-    }
+
     #manualBtn{
-      left:15%;
-      top:81.8%;
-      width:39%;
-      height:3.4%;
+      left:6%;
+      top:68%;
+      width:18%;
+      height:9.5%;
+      border-radius:50%;
     }
 
-    /* VOLTAR */
-    .backBtn{
-      left:30%;
-      bottom:1.25%;
-      width:40%;
-      height:3.2%;
+    #giftBtn{
+      left:28%;
+      top:68%;
+      width:18%;
+      height:9.5%;
+      border-radius:50%;
+    }
+
+    #rsvpBtn{
+      left:50%;
+      top:68%;
+      width:18%;
+      height:9.5%;
+      border-radius:50%;
+    }
+
+    #locationBtn{
+      left:72%;
+      top:68%;
+      width:18%;
+      height:9.5%;
+      border-radius:50%;
+    }
+
+    /* =========================
+       PÁGINAS INTERNAS
+    ========================= */
+    .closeBtn{
+      top:1.8%;
+      right:3%;
+      width:9%;
+      aspect-ratio:1/1;
+      border-radius:50%;
+      background:rgba(255,255,255,.92);
+      color:#004aad;
+      font-size:30px;
+      font-weight:400;
+      line-height:1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 4px 14px rgba(0,0,0,.12);
+    }
+
+    .closeBtn span{
+      transform:translateY(-1px);
+    }
+
+    /* Botão copiar Pix */
+    .copyPixBtn{
+      left:8%;
+      top:75.3%;
+      width:36%;
+      height:4.6%;
+      border-radius:14px;
+      background:#004aad;
+      color:#fff;
+      font-family:"Times New Roman", Georgia, serif;
+      font-size:20px;
+      letter-spacing:.2px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:0 10px;
+      box-shadow:0 6px 18px rgba(0,74,173,.22);
+    }
+
+    .toast{
+      position:absolute;
+      left:50%;
+      bottom:3%;
+      transform:translateX(-50%);
+      z-index:30;
+      background:rgba(0,74,173,.96);
+      color:#fff;
+      padding:10px 16px;
       border-radius:999px;
+      font-size:14px;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .25s ease;
+      white-space:nowrap;
     }
 
-    .music-state{
-  display:none;
-}
+    .toast.show{
+      opacity:1;
     }
-    .music-state.on{opacity:1}
 
-    @media (min-aspect-ratio:1120/2048){
+    @media (min-aspect-ratio:9/16){
       body{padding:0}
     }
   </style>
 </head>
 <body>
-<main class="app" aria-label="Convite de XV anos de Nicolle">
 
+<main class="app" aria-label="Convite de 15 anos de Cecilia Reis">
+
+  <!-- CAPA -->
   <section class="page active" id="coverPage">
-    <img class="art" src="capa.png" alt="Capa do convite de Nicolle">
+    <img class="art" src="capa.png" alt="Capa do convite de Cecilia Reis">
     <button class="hotspot" id="openInvite" aria-label="Abrir convite"></button>
   </section>
 
+  <!-- CONVITE -->
   <section class="page" id="invitePage">
-    <img class="art" src="convite.png" alt="Convite de XV anos de Nicolle">
+    <img class="art" src="convite.png" alt="Convite principal de Cecilia Reis">
 
     <button class="hotspot" id="musicBtn" aria-label="Tocar ou pausar música"></button>
-    <div class="music-state" id="musicState" aria-hidden="true"></div>
 
-    <button class="hotspot" id="giftBtn" aria-label="Abrir sugestões de presente"></button>
+    <button class="hotspot" id="manualBtn" aria-label="Abrir manual do convidado"></button>
+
+    <button class="hotspot" id="giftBtn" aria-label="Abrir sugestões de presentes"></button>
 
     <a class="hotspot" id="rsvpBtn"
-       href="https://wa.me/5585992875129"
+       href="https://wa.link/x4yta1"
        target="_blank"
        rel="noopener noreferrer"
        aria-label="Confirmar presença pelo WhatsApp"></a>
 
     <a class="hotspot" id="locationBtn"
-       href="https://maps.app.goo.gl/XZ9hBLYaFbDowBkB9"
+       href="https://maps.app.goo.gl/i255TKXXphpAvPEo7"
        target="_blank"
        rel="noopener noreferrer"
-       aria-label="Abrir localização no mapa"></a>
-
-    <button class="hotspot" id="manualBtn" aria-label="Abrir manual do convidado"></button>
+       aria-label="Ver localização"></a>
   </section>
 
+  <!-- PRESENTES -->
   <section class="page" id="giftPage">
-    <img class="art" src="presentes.png" alt="Sugestões de presente">
-    <button class="hotspot backBtn" data-back aria-label="Voltar para o convite"></button>
+    <img class="art" src="presentes.png" alt="Sugestão de presente">
+    <button class="closeBtn" data-back aria-label="Fechar e voltar ao convite">
+      <span>×</span>
+    </button>
+
+    <button class="copyPixBtn" id="copyPixBtn" aria-label="Copiar chave Pix">
+      Copiar chave Pix
+    </button>
   </section>
 
+  <!-- MANUAL / COMUNICADO -->
   <section class="page" id="manualPage">
-    <img class="art" src="manual.png" alt="Manual do convidado">
-    <button class="hotspot backBtn" data-back aria-label="Voltar para o convite"></button>
+    <img class="art" src="manual.png" alt="Comunicado importante">
+    <button class="closeBtn" data-back aria-label="Fechar e voltar ao convite">
+      <span>×</span>
+    </button>
   </section>
 
   <audio id="music" preload="auto" loop>
     <source src="musica.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio HTML5.
   </audio>
 
+  <div class="toast" id="toast">Chave Pix copiada!</div>
 </main>
 
 <script>
-  const coverPage = document.getElementById('coverPage');
+  const coverPage  = document.getElementById('coverPage');
   const invitePage = document.getElementById('invitePage');
-  const giftPage = document.getElementById('giftPage');
+  const giftPage   = document.getElementById('giftPage');
   const manualPage = document.getElementById('manualPage');
 
-  const music = document.getElementById('music');
-  const musicBtn = document.getElementById('musicBtn');
-  const musicState = document.getElementById('musicState');
+  const music      = document.getElementById('music');
+  const musicBtn   = document.getElementById('musicBtn');
+
+  const openInvite = document.getElementById('openInvite');
+  const giftBtn    = document.getElementById('giftBtn');
+  const manualBtn  = document.getElementById('manualBtn');
+
+  const copyPixBtn = document.getElementById('copyPixBtn');
+  const toast      = document.getElementById('toast');
+
+  const PIX_KEY = '608.552.578-81';
 
   function showPage(page){
     [coverPage, invitePage, giftPage, manualPage].forEach(p => p.classList.remove('active'));
     page.classList.add('active');
+    window.scrollTo(0, 0);
   }
 
-  document.getElementById('openInvite').addEventListener('click', () => {
+  function showToast(message){
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(window.toastTimer);
+    window.toastTimer = setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2200);
+  }
+
+  openInvite.addEventListener('click', () => {
     showPage(invitePage);
   });
 
-  document.getElementById('giftBtn').addEventListener('click', () => {
+  giftBtn.addEventListener('click', () => {
     showPage(giftPage);
   });
 
-  document.getElementById('manualBtn').addEventListener('click', () => {
+  manualBtn.addEventListener('click', () => {
     showPage(manualPage);
   });
 
@@ -195,19 +311,30 @@
   });
 
   musicBtn.addEventListener('click', async () => {
-    if(music.paused){
-      try{
+    if (music.paused) {
+      try {
         await music.play();
-        musicState.classList.add('on');
-      }catch(e){}
-    }else{
+      } catch (error) {}
+    } else {
       music.pause();
-      musicState.classList.remove('on');
     }
   });
 
-  music.addEventListener('play', () => musicState.classList.add('on'));
-  music.addEventListener('pause', () => musicState.classList.remove('on'));
+  copyPixBtn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(PIX_KEY);
+      showToast('Chave Pix copiada!');
+    } catch (error) {
+      const temp = document.createElement('input');
+      temp.value = PIX_KEY;
+      document.body.appendChild(temp);
+      temp.select();
+      document.execCommand('copy');
+      document.body.removeChild(temp);
+      showToast('Chave Pix copiada!');
+    }
+  });
 </script>
+
 </body>
 </html>
